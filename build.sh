@@ -7,8 +7,13 @@ mkdir -p $OUT
 
 nasm -f bin $SRC/bootloader/stage1.asm -o $OUT/stage1.bin
 nasm -f bin $SRC/bootloader/stage2.asm -o $OUT/stage2.bin
-nasm -f elf32 $SRC/kernel/kernel_test.asm -o $OUT/kernel.o
-ld -m elf_i386 -T $SRC/kernel/link.ld -o $OUT/kernel.elf $OUT/kernel.o
+CFLAGS="-m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
+        -fno-asynchronous-unwind-tables -nostdlib -O2 -Wall -Wextra"
+
+for f in $SRC/kernel/*.c; do
+  gcc $CFLAGS -c "$f" -o "$OUT/$(basename "${f%.c}").o"
+done
+ld -m elf_i386 -T $SRC/kernel/link.ld -o $OUT/kernel.elf $OUT/*.o
 
 rm -f $OUT/os.img
 truncate -s 1G $OUT/os.img

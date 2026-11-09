@@ -1,4 +1,4 @@
-ENTRY(_start)
+ENTRY(k_entry_main)
 SECTIONS {
   . = 1M;
   .text : { *(.text*) }

@@ -653,5 +653,6 @@ pm_entry:
   mov ss, eax
   mov esp, 0x00090000
   mov ebx, 0x1000
+  cld
   movzx edx, byte [boot_drive]
   jmp [kernel_entry]
