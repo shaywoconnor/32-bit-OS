@@ -22,22 +22,18 @@ bool cursor_new_line(void)
 }
 bool cursor_advance(void)
 {
+  if (cursor_pos + 1 >= MAX_CURSOR_POS) return true;
   cursor_pos++;
-  if (cursor_pos >= MAX_CURSOR_POS)
-  {
-    cursor_pos--;
-    return true;
-  }
   return false;
 }
 
 void k_print_vga_cls(enum VGA_COLOUR_4 cls_colour)
 {
   volatile uint16_t* vga_buf = (volatile uint16_t*)VGA_TEXT_BUFFER;
-  uint16_t counter = VGA_TEXT_BUFFER_WIDTH * VGA_TEXT_BUFFER_HEIGHT;
+  uint16_t counter = MAX_CURSOR_POS;
   while (counter--)
   {
-    *vga_buf++ = (cls_colour << 12) | 0x20;
+    *vga_buf++ = (cls_colour << 12) | ' ';
   }
   cursor_set(0, 0);
 }
