@@ -1,6 +1,6 @@
 ## 32 bit protected mode OS 
 
-![kernel welcome message](misc/first_boot.png)
+![kernel welcome message](misc/div_err.png)
 
 # Custom Bootloader
 
