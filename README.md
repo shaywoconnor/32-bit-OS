@@ -14,5 +14,9 @@ Successfully boots into a test kernel that prints a welcome message
 
 # Kernel
 
-Not yet started
+Creates flat GDT
+
+Initialises IDT with CPU exceptions, no IRQ yet
+
+Intentionally divides by 0, prints an error message from the ISR and halts.
 
