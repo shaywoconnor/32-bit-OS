@@ -6,7 +6,7 @@
 
 #include "k_basic_io.h"
 
-#define VGA_TEXT_BUFFER 0xb8000
+#define VGA_TEXT_BUFFER 0xc00b8000
 #define VGA_TEXT_BUFFER_WIDTH 80
 #define VGA_TEXT_BUFFER_HEIGHT 25
 #define VGA_TEXT_ATTRIB_BLINK 0b10000000
