@@ -1,6 +1,6 @@
 ## 32 bit protected mode OS 
 
-![paging and page fault](misc/happy_to_see_a_page_fault.png)
+![paging and page fault](progress_screenshots/happy_to_see_a_page_fault.png)
 
 # Custom Bootloader
 
