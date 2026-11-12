@@ -22,7 +22,6 @@ void k_entry_main(void)
   k_hello();
   volatile uint32_t should_page_fault = *(volatile uint32_t*)(0x00);
   (void)should_page_fault;
-  for (;;){}
   uint32_t should_interrupt_div_err_test = 32 / 0;
 
   //k_user_handoff();

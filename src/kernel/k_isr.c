@@ -6,7 +6,7 @@ void k_isr_general_halt(void)
   for (;;) __asm__ volatile ("hlt");
 }
 
-//temporary isrs that just print and halt
+//temporary isrs that just print and halt, ugly repeated code, but the idea is later i can modify these independently
 void k_isr_div_err_handler(void)
 {
   k_print_vga_str("ERR: CPU DIV ERR\n", VGA_COLOUR_RED, VGA_COLOUR_GREEN);
