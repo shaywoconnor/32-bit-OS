@@ -20,6 +20,5 @@ Creates flat GDT
 
 Initialises IDT with CPU exceptions, no IRQ yet
 
-Successfully writes text to VGA text buffer mapped to 0xc00b8000
+Uses BIOS E820 memory map to create a new, "sanitized" one, sorted with no overlaps 
 
-Intentionally triggers a page fault by dereferencing unmapped 0x00, successfully printing the error message
