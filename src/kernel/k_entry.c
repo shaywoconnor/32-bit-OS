@@ -32,12 +32,6 @@ static void k_e820_dump(void)
   }
 }
 
-void k_hello(void)
-{
-  k_print_vga_cls(VGA_COLOUR_CYAN);
-  k_print_vga_str("Hello, World!\n", VGA_COLOUR_CYAN, VGA_COLOUR_RED);
-}
-
 void k_init(void)
 {
   k_gdt_init();
