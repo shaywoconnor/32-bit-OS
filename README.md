@@ -1,6 +1,6 @@
 ## 32 bit protected mode OS 
 
-![paging and page fault](progress_screenshots/happy_to_see_a_page_fault.png)
+![e820 map sanitized and printed](progress_screenshots/e820_sanitized.png)
 
 # Custom Bootloader
 

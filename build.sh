@@ -10,7 +10,7 @@ nasm -f bin "$SRC/bootloader/stage2.asm" -o "$OUT/stage2.bin"
 
 CFLAGS="-m32 -ffreestanding -fno-builtin -fno-pic -fno-pie  -fno-builtin-memset\
         -fno-stack-protector -fno-asynchronous-unwind-tables \
-        -nostdlib -O0 -Wall -Wextra"
+        -nostdlib -O0 -Wall -Wextra -mno-sse -mno-sse2 -mno-mmx -mno-80387 -mno-fp-ret-in-387"
 
 for f in "$SRC"/kernel/*.c; do
   gcc $CFLAGS -c "$f" -o "$OUT/$(basename "${f%.c}").o"

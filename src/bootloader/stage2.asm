@@ -563,6 +563,8 @@ test_a20:
   pop si
   ret
 
+; BUG_REMINDER: IF YOU HAVE WEIRD MALLOC BEHAVIOUR CHECK BIOS IS REPORTING CORRECT E820 ENTRY SIZE
+;               LINUX REVERTED ACPI 3 E820 EXTENDED ATTRIBUTE SUPPORT BECAUSE SOME BIOS' ARE KNOWN TO FILL ACPI ATTRIBS WITH 0s
 detect_memory:
   push es
   push di
@@ -573,10 +575,13 @@ detect_memory:
   mov ax, MMAP_BASE_SEG
   mov es, ax
   mov dword [es:0x0000], 0
-  mov di, 0x0004
+  mov dword [es:0x0004], 0
+  mov di, 0x0008
 
   xor ebx, ebx
 .loop:
+  mov ax, MMAP_BASE_SEG
+  mov es, ax ;int15 known to clobber es
   mov eax, 0x0000e820
   mov edx, 0x534d4150           ; "SMAP"
   mov ecx, MMAP_ENTRY
@@ -586,11 +591,6 @@ detect_memory:
   cmp eax, 0x534d4150
   jne .end
 
-  cmp cl, 24
-  jb .check_len
-  test byte [es:di+20], 0x01
-  jz .skip
-.check_len:
   mov eax, [es:di+8]
   or eax, [es:di+12]
   jz .skip
